@@ -1,0 +1,11 @@
+@(elements: helper.FieldElements)
+<div class="form-floating mb-3">
+    <input type="number"
+            class="form-control @if(elements.hasErrors){is-invalid}"
+            placeholder="@elements.label(elements.lang)"
+            id="@elements.id" name="@elements.id">
+    <label for="@elements.id">@elements.label(elements.lang)</label>
+    <div class="invalid-feedback">
+        @elements.errors(elements.lang).mkString(", ")
+    </div>
+</div>

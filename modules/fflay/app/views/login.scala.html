@@ -1,0 +1,18 @@
+@import models.dto.UserDTO
+@(form: Form[UserDTO])(implicit lang: play.api.i18n.Lang)
+
+@main("Login"){
+    <div class="px-4 py-5 my-5 text-center">
+        <div class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+            @helper.form(action = routes.AuthController.loginData()) {
+                @helper.inputText(form("name"), Symbol("_label") -> "Name")(
+                    views.fieldsConstructors.textFieldConstructor, lang
+                )
+                @helper.inputPassword(form("password"), Symbol("_label") -> "Password")(
+                    views.fieldsConstructors.passwordFieldConstructor, lang
+                )
+                <button class="btn btn-primary w-100 py-2" type="submit">Login</button>
+            }
+        </div>
+    </div>
+}

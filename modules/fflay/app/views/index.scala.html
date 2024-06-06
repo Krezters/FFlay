@@ -1,0 +1,27 @@
+@import models.dao.entities.User
+@import models.dao.entities.Video
+@import models.dao.entities.Audio
+
+@(videos: List[Video], audios: List[Audio], user: User = null)
+
+@main("Index page", user) {
+    @if(videos.isEmpty) {
+        <h1 class="mt-5 text-center">Not recent videos</h1>
+    } else {
+        <div class="row mb-3 text-center">
+            @for(video <- videos) {
+                @showVideo(video)
+            }
+        </div>
+    }
+    <p>ㅤ</p><hr>
+    @if(audios.isEmpty) {
+        <h1 class="mt-5 text-center">No new audio</h1>
+    } else {
+        <div class="row mb-3 text-center">
+        @for(audio <- audios) {
+            @showAudio(audio)
+        }
+        </div>
+    }
+}

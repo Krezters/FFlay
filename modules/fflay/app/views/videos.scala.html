@@ -1,0 +1,21 @@
+@import models.dao.entities.User
+@import models.dao.entities.Video
+
+@(videos: List[Video], user: User)
+@main("Index page", user) {
+    <br>
+    <div class="text-center">
+        <button class="btn btn-primary" type="button">
+            <a href="/video" class="nav-link link-body-emphasis px-2">Add video</a>
+        </button>
+    </div>
+    @if(videos.isEmpty) {
+        <h1 class="mt-5">It's empty here :(</h1>
+    } else {
+        <div class="row mb-3 text-center">
+            @for(video <- videos) {
+                @showVideo(video)
+            }
+        </div>
+    }
+}

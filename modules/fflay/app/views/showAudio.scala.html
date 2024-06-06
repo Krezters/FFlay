@@ -1,0 +1,28 @@
+@import models.dao.entities.Audio
+
+@(audio: Audio)
+<div class="col-lg-4 themed-grid-col">
+    <div class="shadow p-3 mb-5 bg-body rounded">
+        <div class="px-4 py-5 my-5 text-center">
+            <h1 class="display-5 fw-bold text-body-emphasis">
+            @audio.name
+            </h1>
+            <div class="col-lg-6 mx-auto">
+                <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+                    @if(audio.ready) {
+                        <button type="button" class="btn btn-primary btn-lg px-4 gap-3">Edit</button>
+                    } else {
+                        <button class="btn btn-primary" type="button" disabled="">
+                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                            Loading...
+                        </button>
+                    }
+                    <button class="btn btn-primary rounded-circle p-3 lh-1" type="button">
+                        <svg class="bi" width="24" height="24"><use xlink:href="#x-lg"></use></svg>
+                        <span class="visually-hidden">Dismiss</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

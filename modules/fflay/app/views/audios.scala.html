@@ -1,0 +1,15 @@
+@import models.dao.entities.User
+@import models.dao.entities.Audio
+
+@(videos: List[Audio], user: User)
+@main("Index page", user) {
+    @if(videos.isEmpty) {
+        <h1 class="mt-5">It's empty here :(</h1>
+    } else {
+        <div class="row mb-3 text-center">
+            @for(video <- videos) {
+                @showAudio(video)
+            }
+        </div>
+    }
+}

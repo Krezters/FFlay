@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-2.0.xsd">
+
+    <changeSet id="create auth tables" author="rdanilov">
+        <createTable tableName="users">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_users"/>
+            </column>
+            <column name="name" type="text">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column name="password" type="text">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="create ffmpeg tables" author="rdanilov">
+        <createTable tableName="videos">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_videos"/>
+            </column>
+            <column name="name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="link" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ready" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="userId" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint
+            baseColumnNames="userId"
+            baseTableName="videos"
+            constraintName="fk_videos_userId_users_id"
+            referencedColumnNames="id"
+            referencedTableName="users"
+        />
+
+        <createTable tableName="audios">
+            <column name="id" type="bigint" autoIncrement="true">
+                <constraints primaryKey="true" nullable="false" primaryKeyName="pk_audios"/>
+            </column>
+            <column name="name" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="link" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column name="ready" type="boolean">
+                <constraints nullable="false"/>
+            </column>
+            <column name="userId" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint
+            baseColumnNames="userId"
+            baseTableName="audios"
+            constraintName="fk_audios_userId_users_id"
+            referencedColumnNames="id"
+            referencedTableName="users"
+        />
+    </changeSet>
+
+    <changeSet id="add admin" author="rdanilov">
+        <insert tableName="users">
+            <column name="name" value="admin" />
+            <column name="password" value="e10adc3949ba59abbe56e057f20f883e" />
+        </insert>
+    </changeSet>
+</databaseChangeLog>

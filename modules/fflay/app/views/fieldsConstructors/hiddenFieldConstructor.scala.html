@@ -1,0 +1,5 @@
+@(elements: helper.FieldElements)
+<input type="hidden" id="@elements.id" name="@elements.id" value="@elements.label(elements.lang)" hidden>
+<div class="invalid-feedback">
+    @elements.errors(elements.lang).mkString(", ")
+</div>

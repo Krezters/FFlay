@@ -1,0 +1,15 @@
+GET /                          @controllers.IndexController.index
+
+GET  /login                    @controllers.AuthController.login
+POST /login                    @controllers.AuthController.loginData
+GET  /registration             @controllers.AuthController.register
+POST /registration             @controllers.AuthController.registrationData
+GET  /logout                   @controllers.AuthController.logout
+
+GET /videos                    @controllers.VideoController.userVideos()
+GET /video                     @controllers.VideoController.addVideo
+POST /video                    @controllers.VideoController.addVideoSubmit
+
+GET /audios                    @controllers.AudioController.userAudios()
+GET /audio                     @controllers.AudioController.addAudio
+POST /audio                    @controllers.AudioController.addAudioSubmit

@@ -1,0 +1,9 @@
+.bsp
+.idea
+app-2.11
+logs
+project/target
+project/project
+target
+/modules/ffmpeg/src/main/hub/
+/modules/fflay/app_temp/

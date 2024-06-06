@@ -1,0 +1,31 @@
+@import models.dao.entities.User
+@import models.dto.AudioDTO
+
+@(form: Form[AudioDTO], user: User)(implicit lang: play.api.i18n.Lang)
+@main("Add a audio", user) {
+    <div class="px-4 py-5 my-5 text-center">
+        <div class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+        @helper.form(action = routes.AudioController.addAudioSubmit()) {
+            @helper.inputText(form("name"), Symbol("_label") -> "Name")(
+                views.fieldsConstructors.textFieldConstructor, lang
+            )
+            @helper.inputText(form("link"), Symbol("_label") -> "")(
+                views.fieldsConstructors.hiddenFieldConstructor, lang
+            )
+            @helper.inputText(form("userId"), Symbol("_label") -> user.id)(
+                views.fieldsConstructors.hiddenFieldConstructor, lang
+            )
+            @helper.inputFile(form("file"), Symbol("_label") -> "File")(
+                views.fieldsConstructors.fileFieldConstructor, lang
+            )
+            @helper.inputFile(form("id"), Symbol("_label") -> "")(
+                views.fieldsConstructors.hiddenFieldConstructor, lang
+            )
+            @helper.inputFile(form("ready"), Symbol("_label") -> "Post a audio")(
+                views.fieldsConstructors.checkboxFieldConstructor, lang
+            )
+            <button class="btn btn-primary w-100 py-2" type="submit">Add</button>
+        }
+        </div>
+    </div>
+}

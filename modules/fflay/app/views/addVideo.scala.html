@@ -1,0 +1,34 @@
+@import models.dao.entities.User
+@import models.dto.VideoDTO
+
+@(form: Form[VideoDTO], user: User)(implicit lang: play.api.i18n.Lang)
+@main("Add a video", user) {
+    <div class="px-4 py-5 my-5 text-center">
+        <div class="p-4 p-md-5 border rounded-3 bg-body-tertiary">
+        @helper.form(
+            action = routes.VideoController.addVideoSubmit(),
+            Symbol("enctype") -> "multipart/form-data"
+        ) {
+            @helper.inputText(form("name"), Symbol("_label") -> "Name")(
+                views.fieldsConstructors.textFieldConstructor, lang
+            )
+            @helper.inputText(form("link"), Symbol("_label") -> "")(
+                views.fieldsConstructors.hiddenFieldConstructor, lang
+            )
+            @helper.inputText(form("userId"), Symbol("_label") -> user.id)(
+                views.fieldsConstructors.hiddenFieldConstructor, lang
+            )
+            @helper.inputFile(form("file"), Symbol("_label") -> "")(
+                views.fieldsConstructors.fileFieldConstructor, lang
+            )
+            @helper.inputText(form("id"), Symbol("_label") -> 0)(
+                views.fieldsConstructors.hiddenFieldConstructor, lang
+            )
+            @helper.checkbox(form("ready"), Symbol("_label") -> "false")(
+                views.fieldsConstructors.hiddenFieldConstructor, lang
+            )
+            <button class="btn btn-primary w-100 py-2" type="submit">Add</button>
+        }
+        </div>
+    </div>
+}
